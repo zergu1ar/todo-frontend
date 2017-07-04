@@ -1,75 +1,164 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Template • TodoMVC</title>
-		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
-		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
-		<!-- CSS overrides - remove if you don't need it -->
-		<link rel="stylesheet" href="css/app.css">
-	</head>
-	<body>
-		<section class="todoapp">
-			<header class="header">
-				<h1>todos</h1>
-				<input class="new-todo" placeholder="What needs to be done?" autofocus>
-			</header>
-			<!-- This section should be hidden by default and shown when there are todos -->
-			<section class="main">
-				<input id="toggle-all" class="toggle-all" type="checkbox">
-				<label for="toggle-all">Mark all as complete</label>
-				<ul class="todo-list">
-					<!-- These are here just to show the structure of the list items -->
-					<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-					<li class="completed">
-						<div class="view">
-							<input class="toggle" type="checkbox" checked>
-							<label>Taste JavaScript</label>
-							<button class="destroy"></button>
-						</div>
-						<input class="edit" value="Create a TodoMVC template">
-					</li>
-					<li>
-						<div class="view">
-							<input class="toggle" type="checkbox">
-							<label>Buy a unicorn</label>
-							<button class="destroy"></button>
-						</div>
-						<input class="edit" value="Rule the web">
-					</li>
-				</ul>
-			</section>
-			<!-- This footer should hidden by default and shown when there are todos -->
-			<footer class="footer">
-				<!-- This should be `0 items left` by default -->
-				<span class="todo-count"><strong>0</strong> item left</span>
-				<!-- Remove this if you don't implement routing -->
-				<ul class="filters">
-					<li>
-						<a class="selected" href="#/">All</a>
-					</li>
-					<li>
-						<a href="#/active">Active</a>
-					</li>
-					<li>
-						<a href="#/completed">Completed</a>
-					</li>
-				</ul>
-				<!-- Hidden if no completed items are left ↓ -->
-				<button class="clear-completed">Clear completed</button>
-			</footer>
-		</section>
-		<footer class="info">
-			<p>Double-click to edit a todo</p>
-			<!-- Remove the below line ↓ -->
-			<p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-			<!-- Change this out with your name and url ↓ -->
-			<p>Created by <a href="http://todomvc.com">you</a></p>
-			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-		</footer>
-		<!-- Scripts here. Don't remove ↓ -->
-		<script src="node_modules/todomvc-common/base.js"></script>
-		<script src="js/app.js"></script>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template • TodoMVC</title>
+    <link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+    <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+    <!-- CSS overrides - remove if you don't need it -->
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="topmenu">
+    <div>
+        <a id="showShare" href="#">Manage share</a>
+        (<a id="logout" href="#">Logout</a>)
+    </div>
+</div>
+<section class="todoapp">
+    <header class="header">
+        <h1>todos</h1>
+        <input class="new-todo" placeholder="What needs to be done?" autofocus>
+    </header>
+    <!-- This section should be hidden by default and shown when there are todos -->
+    <section class="main">
+        <input id="toggle-all" class="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list">
+            <!-- These are here just to show the structure of the list items -->
+            <tListList items should get the class `editing` when editing and `completed` when marked as completed -->
+                <div class="divider"></div>
+        </ul>
+    </section>
+    <!-- This footer should hidden by default and shown when there are todos -->
+    <footer class="footer">
+        <!-- This should be `0 items left` by default -->
+        <span class="todo-count"><strong>0</strong> item left</span>
+        <!-- Remove this if you don't implement routing -->
+        <ul class="filters">
+            <li>
+                <a id="showAll" class="selected" href="#/">All</a>
+            </li>
+            <li>
+                <a id="showActive" href="#/active">Active</a>
+            </li>
+            <li>
+                <a id="showCompleted" href="#/completed">Completed</a>
+            </li>
+        </ul>
+        <!-- Hidden if no completed items are left ↓ -->
+        <button class="clear-completed">Clear completed</button>
+    </footer>
+</section>
+<footer class="info">
+    <p>Double-click to edit a todo</p>
+    <!-- Remove the below line ↓ -->
+    <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
+    <!-- Change this out with your name and url ↓ -->
+    <p>Created by <a href="http://todomvc.com">you</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+</footer>
+<!-- Auth block -->
+<div id="connectionError">
+    <div class="background"></div>
+    <div class="block">
+        <h1>Connection problem...</h1>
+        We'll automatically try to reconnect, but you can <a href="#" id="reconnect">try reconnect manually</a>
+    </div>
+</div>
+<div id="auth">
+    <div class="background"></div>
+    <div class="block">
+        <div class="column">
+            <h2>Auth</h2>
+            <form id="auth_form">
+                <div class="message"></div>
+                <div class="form-input">
+                    <label for="auth_login">Login</label>
+                    <input type="text" id="auth_login" name="login" placeholder="Login"/>
+                </div>
+                <div class="form-input">
+                    <label for="auth_pwd">Password</label>
+                    <input type="password" id="auth_pwd" name="password" placeholder="Password"/>
+                </div>
+                <button type="submit">Log in</button>
+            </form>
+        </div>
+        <div class="column">
+            <h2>Register</h2>
+            <form id="register_form">
+                <div class="message"></div>
+                <div class="form-input">
+                    <label for="register_login">Login</label>
+                    <input type="text" id="register_login" name="login" placeholder="Login"/>
+                </div>
+                <div class="form-input">
+                    <label for="register_pwd">Password</label>
+                    <input type="password" id="register_pwd" name="password" placeholder="Password"/>
+                </div>
+                <button type="submit">Sign up</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="share">
+    <div class="background"></div>
+    <div class="block">
+        <a href="#" id="share_close">x</a>
+        <h2>My list permission</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Shared</th>
+                <th>Changed</th>
+                <th>Permission</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="no-rows">
+                <td colspan="5">No shares available</td>
+            </tr>
+            </tbody>
+        </table>
+        <form id="add_permission">
+            <input type="text" name="username" placeholder="Username"/>
+            <label>
+                <input type="checkbox" value="1" name="permission"/>
+                Write
+            </label>
+            <button type="submit">Add new permission</button>
+        </form>
+
+    </div>
+</div>
+<div class="hidden" id="tpl">
+    <li class="{completed} {disabled}" id="task_{id}">
+        <div class="view">
+            <div class="shared">{username}</div>
+            <input class="toggle" data-id="{id}" type="checkbox" {disabled} {checked}>
+            <label data-id="{id}">{label}</label>
+            <button data-id="{id}" class="destroy"></button>
+        </div>
+        <input type="text" class="edit" data-id="{id}" value="{label}"/>
+    </li>
+</div>
+<table class="hidden">
+    <tbody id="shareRow">
+    <tr id="share_{userId}">
+        <td>{username}</td>
+        <td>{created}</td>
+        <td>{updated}</td>
+        <td>{permission} (<a href="#" class="changePerm" data-permission="{changeToPerm}" data-username="{username}">{ChangeTo}</a>)</td>
+        <td><a class="removePerm" data-username={username} href="#">Remove</a></td>
+    </tr>
+    </tbody>
+</table>
+<!-- Scripts here. Don't remove ↓ -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="node_modules/todomvc-common/base.js"></script>
+<script src="js/app.js"></script>
+</body>
 </html>

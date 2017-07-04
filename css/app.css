@@ -6,3 +6,110 @@ remove this comment if used
 remove this file if not
 
 */
+
+#auth, #share, #connectionError {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.8;
+}
+.block {
+    position: absolute;
+    z-index: 1001;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    width: 400px;
+    min-height: 300px;
+    top: 50px;
+    left: 50%;
+    margin-left: -200px;
+}
+.block #share_close {
+    float: right;
+    margin: -20px;
+    background: #000000;
+    color: #ffffff;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 25px;
+    border: solid 2px #ffffff;
+    box-shadow: 0px 0px 5px #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+.block .column {
+    float: left;
+    width: 50%;
+    margin: 0;
+}
+.block .column .has-error {
+    color: #ff0000;
+}
+.block .column .has-error input {
+    border: solid 1px #ff0000;
+}
+.block .message {
+    font-size: 10px;
+    color: #ff0000;
+}
+.block input[type=text], .block input[type=password] {
+    padding: 6px 10px;
+    border: solid 1px #666666;
+    margin: 5px 0;
+    width: 150px;
+}
+.block button[type=submit] {
+    padding: 5px 10px;
+    color: #ffffff;
+    margin: 5px 0;
+    cursor: pointer;
+    background: #b12d2b;
+}
+.block button[type=submit]:hover {
+    background: #f12d2b !important;
+}
+.block a {
+    color: red;
+}
+.hidden {
+    display: none;
+}
+.todo-list .shared {
+    font-size: 9px;
+    position: absolute;
+    right: 100px;
+}
+#topmenu {
+    width: 100%;
+    background: linear-gradient(#eee, #ddd);
+    height: 30px;
+    text-align: right;
+}
+#topmenu div {
+    padding-top: 3px;
+    margin-right: 20px;
+}
+#topmenu a {
+    color: #666666;
+}
+#share table {
+    width: 100%;
+    font-size: 11px;
+    border-collapse: collapse;
+}
+#share table td, #share table th {
+    border: solid 1px #ddd;
+}
